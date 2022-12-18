@@ -10,7 +10,7 @@ export default function BarChart({ageCaseInfoState, ageBackGroundColor}:any) {
       const dataset = {
         label: `${el}`,
         data: ageCaseInfoState[el],
-        backgroundColor: ageBackGroundColor[el]
+        backgroundColor: ageBackGroundColor[el],
       }
       barDatasetsArr.unshift(dataset)
     }
@@ -18,7 +18,7 @@ export default function BarChart({ageCaseInfoState, ageBackGroundColor}:any) {
 
   const data = {
     labels: ageCaseInfoState?.stateDt,
-    datasets: barDatasetsArr
+    datasets: barDatasetsArr,
   }
   const options:any = {
     plugins: {
@@ -30,10 +30,29 @@ export default function BarChart({ageCaseInfoState, ageBackGroundColor}:any) {
     indexAxis: 'y' as const,
     scales: {
       x: {
-        stacked:true
+        stacked:true,
+        ticks: {
+          font: {
+            size: 12,
+            weight: 400,
+            family: "'Red Hat Display', sans-serif"
+          },
+          color: '#C4C4C4',
+        },
       },
       y: {
-        stacked:true
+        grid: {
+          display: false,
+        },
+        stacked:true,
+        ticks: {
+          font: {
+            size: 12,
+            weight: 700,
+            family: "'Red Hat Display', sans-serif"
+          },
+          color: '#3C3C46',
+        },
       }
     }
   }

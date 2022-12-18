@@ -91,7 +91,6 @@ export default function Home() {
           </style>
         </Head>
         <main className={styles.main}>
-          {/* <SideBarMuen /> */}
         </main>
       </StyleWrap>
     </>
