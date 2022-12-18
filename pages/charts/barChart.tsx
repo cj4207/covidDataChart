@@ -1,4 +1,6 @@
 import { Bar } from 'react-chartjs-2'
+import styled from '@emotion/styled'
+
 export default function BarChart({ageCaseInfoState, ageBackGroundColor}:any) {
 
   const barDatasetsArr:any[] = []
@@ -37,7 +39,15 @@ export default function BarChart({ageCaseInfoState, ageBackGroundColor}:any) {
   }
   return (
     <>
-      {data && <Bar data={data} options={options} width={385} height={249}/>}
+      <StyleWrap>
+        {data && <Bar data={data} options={options} width={385} height={249}/>}
+      </StyleWrap>
     </>
   )
 }
+
+const StyleWrap = styled.div`
+  border-right: 1px solid #CCCCCC;
+  padding-top: 58px;
+  padding-left: 90px;
+`

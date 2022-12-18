@@ -1,13 +1,10 @@
-import Head from 'next/head'
-import styled from '@emotion/styled'
-import styles from '../styles/Home.module.css'
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Filler, Legend, BarController, BarElement, ArcElement, scales } from 'chart.js'
 import axios from 'axios'
-import { useEffect, useState, useRef } from 'react'
+import styled from '@emotion/styled'
+import { useEffect, useState } from 'react'
 import PieChart from './charts/pieChart'
 import LineChart from './charts/lineChart'
 import BarChart from './charts/barChart'
-import SideBarMuen from './sideBarMenu'
 
 ChartJS.register(
   ArcElement,
@@ -22,7 +19,7 @@ ChartJS.register(
   Legend
 )
 
-export default function Home() {
+export default function ChartsIndex() {
   
   const [coronaInfoState, setCoronaInfoState] = useState<any>()
   const [ageCaseInfoState, setAgeCaseInfoState] = useState<any>()
@@ -84,21 +81,49 @@ export default function Home() {
   return (
     <>
       <StyleWrap>
-        <Head>
-          <title>디비디랩 과제</title>
-          <style>
-            @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300&display=swap');
-          </style>
-        </Head>
-        <main className={styles.main}>
-          {/* <SideBarMuen /> */}
-        </main>
+        <div className='lineChartArea'>
+          <p>코로나 일자별 확진자 수</p>
+          <div className="borderLine"></div>
+          <LineChart coronaInfoState={coronaInfoState}/>
+        </div>
+        <div className="bottomBorderLine"></div>
+        <div className='bottomArea'>
+          <div className='barChartArea'>
+            <p>일자별  연령대 확진자 수</p>
+            <BarChart className='barChart' ageCaseInfoState={ageCaseInfoState} ageBackGroundColor={ageBackGroundColor}/>
+          </div>
+          <div className='pieChartArea'>
+            <p>일자별 성별 확진자 수</p>
+            <PieChart className='pieChart' ageCaseInfoState={ageCaseInfoState} ageBackGroundColor={ageBackGroundColor}/>
+          </div>
+        </div>
       </StyleWrap>
     </>
   )
 }
 
 const StyleWrap = styled.div`
-  font-family: 'Red Hat Display', sans-serif;
-  font-weight: 160;
+  margin-left: 37px;
+  .lineChartArea {
+    margin-top: 58px;
+    margin-bottom: 44px;
+    .borderLine {
+      margin-top: 15.5px;
+      margin-bottom: 75.5px;
+      width: 100%;
+      height: 1px;
+      background-color: #CCCCCC;
+    }
+  }
+  .bottomArea {
+    display: flex;
+    p {
+      border-top: 1px solid #CCCCCC;
+      border-right: 1px solid #CCCCCC;
+      border-bottom: 1px solid #CCCCCC;
+      display: inlin-block;
+      width: 582px;
+      padding: 15px 24px;
+    }
+  }
 `

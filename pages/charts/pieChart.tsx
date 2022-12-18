@@ -1,4 +1,5 @@
 import { Pie } from 'react-chartjs-2'
+import styled from '@emotion/styled'
 import { useRef, useState, useEffect } from 'react'
 export default function PieChart({ageCaseInfoState, ageBackGroundColor}:any) {
 
@@ -32,7 +33,7 @@ export default function PieChart({ageCaseInfoState, ageBackGroundColor}:any) {
           {
             label: ageCaseInfoState?.stateDt[0],
             data: [pieDatasetsArrState[1]?.data[findIndex], pieDatasetsArrState[0]?.data[findIndex]],
-            backgroundColor: ['#A29ACD', '#329ACD']
+            backgroundColor: ['#629ACD', '#E79997']
           }
         ]
       })
@@ -44,12 +45,24 @@ export default function PieChart({ageCaseInfoState, ageBackGroundColor}:any) {
   }
   return (
     <>
+    <StyleWrap>
       <select onChange={onSelect} ref={dateSelect} defaultValue='1'>
         {ageCaseInfoState?.stateDt.map((el:string, idx:number)=>
           <option key={idx}>{el}</option>
         )}
       </select>
       {dateState && <Pie data={dateState} options={{responsive: false, plugins: {legend: {position:'bottom'}}}} width={300} height={300}/>}
+    </StyleWrap>
     </>
   )
 }
+
+const StyleWrap = styled.div`
+  padding: 55px;
+  position: relative;
+  select {
+    position: absolute;
+    right: 150px;
+    top: 0px;
+  }
+`
